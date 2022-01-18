@@ -1,0 +1,109 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://WakerPlayer.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/pc/Waker/Waker_Still0.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/pc/Waker/waker_still1.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/pc/Waker/waker_still2.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/pc/Waker/waker_still3.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/pc/Waker Run/wakerRun_0.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/pc/Waker Run/wakerRun_1.png" type="Texture" id=7]
+[ext_resource path="res://Camera2D.gd" type="Script" id=8]
+[ext_resource path="res://PauseGame.tscn" type="PackedScene" id=9]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=2]
+
+animations = [ {
+"frames": [ ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="Waker Character" type="KinematicBody2D"]
+
+position = Vector2( -267.044, -73.4439 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_vertical_guides_": [ -1312.0 ]
+}
+
+[node name="StillAnimation" type="AnimatedSprite" parent="." index="0"]
+
+position = Vector2( 816, 368 )
+scale = Vector2( 0.7, 0.7 )
+frames = SubResource( 1 )
+animation = "default"
+frame = 3
+playing = true
+_sections_unfolded = [ "Visibility" ]
+
+[node name="RunningAnimation" type="AnimatedSprite" parent="." index="1"]
+
+visible = false
+position = Vector2( 816, 368 )
+scale = Vector2( 0.7, 0.7 )
+frames = SubResource( 2 )
+animation = "default"
+frame = 1
+playing = true
+_sections_unfolded = [ "Visibility" ]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="2"]
+
+position = Vector2( 7.01407, -44.1182 )
+scale = Vector2( 0.991986, 1.09927 )
+build_mode = 0
+polygon = PoolVector2Array( 773.203, 463.969, 851.702, 463.969, 851.702, 448.937, 773.203, 448.937 )
+
+[node name="Camera2D" type="Camera2D" parent="." index="3"]
+
+position = Vector2( 823.798, 379.899 )
+scale = Vector2( 8, 7 )
+z_index = 2
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit_left = 0
+limit_top = 0
+limit_right = 320
+limit_bottom = 192
+limit_smoothed = false
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = false
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.6
+drag_margin_top = 0.4
+drag_margin_right = 0.6
+drag_margin_bottom = 0.4
+editor_draw_screen = true
+editor_draw_limits = true
+editor_draw_drag_margin = false
+script = ExtResource( 8 )
+_sections_unfolded = [ "Drag Margin", "Editor", "Limit", "Smoothing" ]
+
+[node name="PauseGame" parent="." index="4" instance=ExtResource( 9 )]
+
+margin_left = 811.0
+margin_top = 361.0
+margin_right = 851.0
+margin_bottom = 401.0
+
+
